@@ -1,7 +1,7 @@
 import Head from "next/head";
-// import Image from "next/image";
 import CImage from "../components/cimage";
 import { getImage } from "../lib/api";
+
 export default function IndexPage({ imagedata }) {
 	const images = imagedata.data.imageCollection.items;
 	return (
