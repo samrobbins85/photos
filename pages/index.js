@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
 import { getImage, getSections } from "../lib/api";
-import Image from "next/image";
+// import Image from "next/image";
+import CImage from "../components/cimage";
 export default function IndexPage({ imagedata, sections }) {
-	console.log(sections);
 	const images = imagedata.data.imageCollection.items;
 	return (
 		<>
@@ -14,14 +14,14 @@ export default function IndexPage({ imagedata, sections }) {
 			<div className="pt-12">
 				<h1 className="text-center text-5xl font-semibold">Photos</h1>
 			</div>
-			<div className="grid grid-cols-6 px-8 container mx-auto">
+			<div className="grid grid-cols-4 px-8 container mx-auto gap-4">
 				{sections.map((x) => (
 					<Link href={`/${x.title.toLowerCase()}`}>
 						<a>
 							<div className="border rounded">
 								<div className="flex justify-center">
-									<div className="w-full h-32 relative">
-										<Image
+									<div className="w-full h-40 relative">
+										<CImage
 											src={x.coverImage.url}
 											objectFit="cover"
 											layout="fill"

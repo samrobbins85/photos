@@ -1,16 +1,36 @@
-import { getImage, getSections, getSectionPaths } from "../lib/api";
-
-export default function Gallery() {
-	return <p>Hello</p>;
+import { getPage, getSectionPaths } from "../lib/api";
+import CImage from "../components/cimage";
+import Image from "next/image";
+export default function Gallery({ pagedata }) {
+	return (
+		<>
+			<div className="pt-6 container mx-auto">
+				<h1 className="text-center text-4xl font-semibold">
+					{pagedata.title}
+				</h1>
+				<div className="masonry">
+					{pagedata.imagesCollection.items.map((x) => (
+						<div className="overflow-hidden mb-8 rounded-lg">
+							<CImage
+								src={x.url}
+								width={x.width}
+								height={x.height}
+								// layout="responsive"
+								className="rounded-lg overflow-hidden mb-8 pb-0"
+							/>
+						</div>
+					))}
+				</div>
+			</div>
+		</>
+	);
 }
 
-export async function getStaticProps(context) {
-	const imagedata = await getImage();
-	const sections = await getSections();
+export async function getStaticProps({ params }) {
+	const pagedata = await getPage(params.slug);
 	return {
 		props: {
-			imagedata,
-			sections,
+			pagedata,
 		},
 	};
 }

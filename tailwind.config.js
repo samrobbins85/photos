@@ -9,6 +9,9 @@ module.exports = {
 			fontFamily: {
 				sans: ["Inter var", ...defaultTheme.fontFamily.sans],
 			},
+			gridColumn: {
+				1: "1",
+			},
 		},
 	},
 	variants: {},
