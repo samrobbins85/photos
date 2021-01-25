@@ -8,14 +8,13 @@ export default function Gallery({ pagedata }) {
 				<h1 className="text-center text-4xl font-semibold">
 					{pagedata.title}
 				</h1>
-				<div className="masonry">
+				<div className="masonry pt-10">
 					{pagedata.imagesCollection.items.map((x) => (
 						<div className="overflow-hidden mb-8 rounded-lg">
 							<CImage
 								src={x.url}
 								width={x.width}
 								height={x.height}
-								// layout="responsive"
 								className="rounded-lg overflow-hidden mb-8 pb-0"
 							/>
 						</div>
@@ -39,7 +38,7 @@ export async function getStaticPaths() {
 	const paths = await getSectionPaths();
 	return {
 		paths: paths.map((slug) => ({
-			params: { slug: slug.title.toLowerCase() },
+			params: { slug: slug.slug },
 		})),
 		fallback: false, // See the "fallback" section below
 	};

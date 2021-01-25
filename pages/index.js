@@ -1,10 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
-import { getImage, getSections } from "../lib/api";
+import { getSections } from "../lib/api";
 // import Image from "next/image";
 import CImage from "../components/cimage";
-export default function IndexPage({ imagedata, sections }) {
-	const images = imagedata.data.imageCollection.items;
+export default function IndexPage({ sections }) {
 	return (
 		<>
 			<Head>
@@ -14,22 +13,19 @@ export default function IndexPage({ imagedata, sections }) {
 			<div className="pt-12">
 				<h1 className="text-center text-5xl font-semibold">Photos</h1>
 			</div>
-			<div className="grid grid-cols-4 px-8 container mx-auto gap-4">
+			<div className="grid grid-cols-4 px-8 container mx-auto gap-4 pt-10">
 				{sections.map((x) => (
-					<Link href={`/${x.title.toLowerCase()}`}>
+					<Link href={`/${x.slug}`}>
 						<a>
-							<div className="border rounded">
-								<div className="flex justify-center">
-									<div className="w-full h-40 relative">
-										<CImage
-											src={x.coverImage.url}
-											objectFit="cover"
-											layout="fill"
-										/>
-									</div>
-								</div>
-								<div className="h-12 flex items-center justify-center">
-									<p className="text-2xl font-semibold text-center">
+							<div className="flex justify-center">
+								<div className="w-full h-56 relative">
+									<CImage
+										src={x.coverImage.url}
+										objectFit="cover"
+										layout="fill"
+										className="rounded-lg"
+									/>
+									<p className="absolute bottom-4 left-4 text-white text-4xl font-bold">
 										{x.title}
 									</p>
 								</div>
@@ -43,11 +39,9 @@ export default function IndexPage({ imagedata, sections }) {
 }
 
 export async function getStaticProps(context) {
-	const imagedata = await getImage();
 	const sections = await getSections();
 	return {
 		props: {
-			imagedata,
 			sections,
 		},
 	};
