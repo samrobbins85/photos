@@ -26,7 +26,24 @@
 	gap: 1rem;
 } */
 
-.masonry {
+@layer utilities {
+	@variants responsive {
+		.cols-4 {
+			column-count: 4;
+		}
+		.cols-3 {
+			column-count: 3;
+		}
+		.cols-2 {
+			column-count: 2;
+		}
+		.cols-1 {
+			column-count: 1;
+		}
+	}
+}
+
+/* .masonry {
 	column-count: 3;
 	column-gap: 2rem;
 }
@@ -34,4 +51,4 @@
 	.masonry {
 		column-count: 4;
 	}
-}
+} */

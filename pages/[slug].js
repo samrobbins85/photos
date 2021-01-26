@@ -29,11 +29,11 @@ export default function Gallery({ pagedata }) {
 					</a>
 				</Link>
 			</div>
-			<div className="pt-2 container mx-auto px-2">
+			<div className="pt-2 container mx-auto px-4">
 				<h1 className="text-center text-4xl font-semibold">
 					{pagedata.title}
 				</h1>
-				<div className="masonry pt-10">
+				<div className="cols-1 sm:cols-2 md:cols-3 lg:cols-4 pt-10">
 					{pagedata.imagesCollection.items.map((x) => (
 						<div className="overflow-hidden mb-8 rounded-lg">
 							<CImage

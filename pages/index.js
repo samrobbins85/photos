@@ -16,7 +16,7 @@ export default function IndexPage({ sections }) {
 						Photos
 					</h1>
 				</div>
-				<div className="grid grid-cols-4 px-8 container mx-auto gap-4 pt-10">
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-8 container mx-auto gap-4 pt-10">
 					{sections.map((x) => (
 						<Link href={`/${x.slug}`}>
 							<a>
