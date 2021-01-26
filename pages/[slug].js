@@ -1,10 +1,35 @@
 import { getPage, getSectionPaths } from "../lib/api";
 import CImage from "../components/cimage";
-import Image from "next/image";
+import Head from "next/head";
+import Link from "next/link";
 export default function Gallery({ pagedata }) {
 	return (
 		<>
-			<div className="pt-6 container mx-auto">
+			<Head>
+				<title>{pagedata.title} - Sam Robbins Photography</title>
+			</Head>
+			<div className="pt-10 pl-10 text-gray-600 hover:text-gray-700">
+				<Link href="/">
+					<a>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+							className="h-6 w-6 inline-block mr-2"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth={2}
+								d="M10 19l-7-7m0 0l7-7m-7 7h18"
+							/>
+						</svg>
+						<span className="text-lg">Home</span>
+					</a>
+				</Link>
+			</div>
+			<div className="pt-2 container mx-auto px-2">
 				<h1 className="text-center text-4xl font-semibold">
 					{pagedata.title}
 				</h1>
