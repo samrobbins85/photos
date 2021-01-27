@@ -43,11 +43,11 @@ export default function Gallery({ pagedata }) {
 					<AnimateSharedLayout type="crossfade">
 						{pagedata.imagesCollection.items.map((x) => (
 							<motion.div
-								layoutId={x.url}
 								onClick={() => setSelectedId(x.url)}
 								className="overflow-hidden mb-8 rounded-lg"
 							>
 								<motion.img
+									layoutId={x.url}
 									src={x.url}
 									width={x.width}
 									height={x.height}

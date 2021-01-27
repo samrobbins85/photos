@@ -20,11 +20,15 @@ export default function Modal({ selectedId, setSelectedId }) {
 	});
 	return (
 		<motion.div
-			className="z-10 fixed pt-20 left-0 top-0 w-full h-full overflow-auto"
-			layoutId={selectedId}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			transition={{ duration: 0.5 }}
+			className="z-10 fixed pt-20 left-0 top-0 w-full h-full overflow-auto bg-black-opaque"
 		>
 			<motion.img
-				className="w-2/3 z-10 m-auto text-center"
+				layoutId={selectedId}
+				className="max-w-2/3 max-h-3/4 z-10 m-auto text-center"
 				src={selectedId}
 				ref={node}
 			/>
