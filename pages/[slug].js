@@ -4,24 +4,9 @@ import Head from "next/head";
 import Link from "next/link";
 import { AnimateSharedLayout, motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
+import Modal from "../components/modal";
 export default function Gallery({ pagedata }) {
 	const [selectedId, setSelectedId] = useState(null);
-	const node = useRef();
-	const handleClickOutside = (e) => {
-		if (selectedId) {
-			if (node.current.contains(e.target)) {
-				return;
-			}
-			setSelectedId(null);
-		}
-	};
-	useEffect(() => {
-		document.addEventListener("mousedown", handleClickOutside);
-
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
-		};
-	});
 
 	return (
 		<>
@@ -72,16 +57,10 @@ export default function Gallery({ pagedata }) {
 						))}
 						<AnimatePresence>
 							{selectedId && (
-								<motion.div
-									className="z-10 fixed pt-20 left-0 top-0 w-full h-full overflow-auto"
-									layoutId={selectedId}
-									ref={node}
-								>
-									<motion.img
-										className="w-2/3 z-10 m-auto text-center"
-										src={selectedId}
-									/>
-								</motion.div>
+								<Modal
+									selectedId={selectedId}
+									setSelectedId={setSelectedId}
+								/>
 							)}
 						</AnimatePresence>
 					</AnimateSharedLayout>
