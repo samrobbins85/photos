@@ -2,7 +2,7 @@ import { getPage, getSectionPaths } from "../lib/api";
 import CImage from "../components/cimage";
 import Head from "next/head";
 import Link from "next/link";
-import { SRLWrapper } from "simple-react-lightbox";
+import { SRLWrapper, useLightbox } from "simple-react-lightbox";
 const options = {
 	buttons: {
 		showAutoplayButton: false,
@@ -11,7 +11,25 @@ const options = {
 		showThumbnailsButton: false,
 	},
 };
+
+// const elements = [
+// 	{
+// 		src: "https://picsum.photos/200/300",
+// 	},
+
+// 	{
+// 		src: "https://picsum.photos/200/300",
+// 	},
+
+// 	{
+// 		src: "https://picsum.photos/200/300",
+// 	},
+// ];
 export default function Gallery({ pagedata }) {
+	const elements = pagedata.imagesCollection.items.map((x) => ({
+		src: x.url,
+	}));
+	const { openLightbox } = useLightbox();
 	return (
 		<>
 			<Head>
@@ -42,22 +60,21 @@ export default function Gallery({ pagedata }) {
 					{pagedata.title}
 				</h1>
 				<div className="cols-1 sm:cols-2 md:cols-3 lg:cols-4 pt-10">
-					<SRLWrapper options={options}>
-						{pagedata.imagesCollection.items.map((x) => (
-							<a href={x.url}>
-								<div className="overflow-hidden mb-8 rounded-lg">
-									<CImage
-										src={x.url}
-										width={x.width}
-										height={x.height}
-										priority={true}
-										className="rounded-lg overflow-hidden mb-8 pb-0"
-									/>
-								</div>
-							</a>
-						))}
-					</SRLWrapper>
+					{pagedata.imagesCollection.items.map((x, index) => (
+						<div
+							onClick={() => openLightbox(index)}
+							className="overflow-hidden mb-8 rounded-lg cursor-pointer"
+						>
+							<CImage
+								src={x.url}
+								width={x.width}
+								height={x.height}
+								className="rounded-lg overflow-hidden mb-8 pb-0"
+							/>
+						</div>
+					))}
 				</div>
+				<SRLWrapper elements={elements} options={options} />
 			</div>
 		</>
 	);
