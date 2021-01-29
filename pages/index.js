@@ -10,7 +10,7 @@ export default function IndexPage({ sections }) {
 				<title>Photos</title>
 				<meta name="Description" content="Photos taken by me" />
 			</Head>
-			<div className="px-2">
+			<div className="px-2 pb-2">
 				<div className="pt-12">
 					<h1 className="text-center text-5xl font-semibold">
 						Photos
