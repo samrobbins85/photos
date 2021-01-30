@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
 import { getSections } from "../lib/api";
-// import Image from "next/image";
 import CImage from "../components/cimage";
 export default function IndexPage({ sections }) {
 	return (
@@ -18,7 +17,7 @@ export default function IndexPage({ sections }) {
 				</div>
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-8 container mx-auto gap-4 pt-10">
 					{sections.map((x) => (
-						<Link href={`/${x.slug}`}>
+						<Link href={`/${x.slug}`} key={x.title}>
 							<a>
 								<div className="flex justify-center">
 									<div className="w-full h-56 relative">
@@ -42,7 +41,7 @@ export default function IndexPage({ sections }) {
 	);
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
 	const sections = await getSections();
 	return {
 		props: {

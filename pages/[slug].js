@@ -12,19 +12,6 @@ const options = {
 	},
 };
 
-// const elements = [
-// 	{
-// 		src: "https://picsum.photos/200/300",
-// 	},
-
-// 	{
-// 		src: "https://picsum.photos/200/300",
-// 	},
-
-// 	{
-// 		src: "https://picsum.photos/200/300",
-// 	},
-// ];
 export default function Gallery({ pagedata }) {
 	const elements = pagedata.imagesCollection.items.map((x) => ({
 		src: x.url,
@@ -61,9 +48,10 @@ export default function Gallery({ pagedata }) {
 				</h1>
 				<div className="cols-1 sm:cols-2 md:cols-3 lg:cols-4 pt-10">
 					{pagedata.imagesCollection.items.map((x, index) => (
-						<div
+						<button
 							onClick={() => openLightbox(index)}
-							className="overflow-hidden mb-8 rounded-lg cursor-pointer"
+							className="overflow-hidden mb-2 rounded-lg cursor-pointer"
+							key={x.url}
 						>
 							<CImage
 								src={x.url}
@@ -71,7 +59,7 @@ export default function Gallery({ pagedata }) {
 								height={x.height}
 								className="rounded-lg overflow-hidden mb-8 pb-0"
 							/>
-						</div>
+						</button>
 					))}
 				</div>
 				<SRLWrapper elements={elements} options={options} />
@@ -95,6 +83,6 @@ export async function getStaticPaths() {
 		paths: paths.map((slug) => ({
 			params: { slug: slug.slug },
 		})),
-		fallback: false, // See the "fallback" section below
+		fallback: false,
 	};
 }
