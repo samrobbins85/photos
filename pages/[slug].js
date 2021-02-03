@@ -14,7 +14,7 @@ const options = {
 
 export default function Gallery({ pagedata }) {
 	const elements = pagedata.imagesCollection.items.map((x) => ({
-		src: x.url,
+		src: x.url + "?fm=webp",
 	}));
 	const { openLightbox } = useLightbox();
 	return (
